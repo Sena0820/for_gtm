@@ -1,0 +1,39 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+nav#tabs {
+  display: flex;
+  justify-content: space-around;
+  background-color: #333;
+  padding: 10px 0;
+}
+
+nav#tabs button {
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+nav#tabs button:hover {
+  background-color: #555;
+}
+
+nav#tabs button.active {
+  background-color: #666;
+}
+
+.tab-content {
+  display: none;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.tab-content.active {
+  display: block;
+} 
