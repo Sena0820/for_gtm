@@ -2,14 +2,7 @@
 <html>
 <head>
 <title>SPA Sample</title>
-<style>
-  .tab-content {
-    display: none;
-  }
-  .active {
-    display: block;
-  }
-</style>
+<link rel="stylesheet" href="styles.css">
   <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -20,13 +13,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </head>
 <body>
 
-<div id="tabs">
+<nav id="tabs">
   <button id="tab1">Tab 1</button>
   <button id="tab2">Tab 2</button>
   <button id="tab3">Tab 3</button>
   <button id="tab4">Tab 4</button>
   <button id="tab5">Tab 5</button>
-</div>
+</nav>
 
 <div id="content">
   <div id="content1" class="tab-content active">
@@ -51,22 +44,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </div>
 
-<script>
-  const tabs = document.querySelectorAll('#tabs button');
-  const contents = document.querySelectorAll('#content .tab-content');
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const targetId = tab.id.replace('tab', 'content');
-
-      // Hide all contents
-      contents.forEach(content => content.classList.remove('active'));
-
-      // Show the selected content
-      document.getElementById(targetId).classList.add('active');
-    });
-  });
-</script>
+<script src="scripts.js"></script>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WVLZP8WV"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
