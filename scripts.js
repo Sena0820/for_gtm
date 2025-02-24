@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: 'tabChange',
-      tabId: targetId.replace('content', 'tab')
+      tabId: targetId.replace('content', 'tab'),
+      screen_name: activeTab.textContent
     });
   }
 
