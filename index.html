@@ -1,21 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="referrer" content="no-referrer-when-downgrade"/>
 <title>SPA Sample for GTM</title>
 <link rel="stylesheet" href="styles.css">
 <script>
   // dataLayerが未定義なら初期化
 // dataLayerとgtag関数を定義
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  
-  // デフォルトの同意状態を'denied'に設定
-  gtag('consent', 'default', {
-    'ad_storage': 'denied',
-    'ad_user_data': 'denied',
-    'ad_personalization': 'denied',
-    'analytics_storage': 'denied'
-  });
 
   // 5桁のランダムな数字を生成する関数
   function generateUserId() {
