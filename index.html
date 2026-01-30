@@ -85,6 +85,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <a href ="sample.html">fugagufa</a>
 
+<button id="cta">Loading...</button>
+
 <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
@@ -107,7 +109,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
-  console.log(analytics);
+  // console.log(analytics);
+
+  getAnalytics(app);
+
+  const rc = getRemoteConfig(app);
+  rc.defaultConfig = {
+    text_color: "normal"
+  };
+
+  await fetchAndActivate(rc);
+
+  const text = getValue(rc, "test_color").asString();
+  document.querySelector("#cta").textContent = text;
 </script>
 
 </body>
