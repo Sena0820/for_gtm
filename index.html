@@ -88,14 +88,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <button id="cta">Loading...</button>
 
 <script type="module">
-  // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  import {
+    getRemoteConfig,
+    fetchAndActivate,
+    getValue
+  } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-remote-config.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
     apiKey: "AIzaSyCmvjSxK_Xv__cwwpdjbS6oBMjqmWOp6lc",
     authDomain: "ab-test-sample-c7e95.firebaseapp.com",
@@ -106,22 +106,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     measurementId: "G-YVXGCDN2N2"
   };
 
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  // console.log(analytics);
-
   getAnalytics(app);
 
   const rc = getRemoteConfig(app);
+
+  // 🔴 Firebase A/B Testing で使っているキーと必ず一致させる
   rc.defaultConfig = {
-    text_color: "normal"
+    ab_cta_text: "Aパターン"
   };
+
+  // 開発中は即反映
+  rc.settings.minimumFetchIntervalMillis = 0;
 
   await fetchAndActivate(rc);
 
-  const text = getValue(rc, "test_color").asString();
-  document.querySelector("#cta").textContent = text;
+  const variantText = getValue(rc, "ab_cta_text").asString();
+
+  // CTA反映
+  document.querySelector("#cta").textContent = variantText;
+
+  // GTM 用に variant を常駐させる
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    ab_variant: variantText,
+    event: "ab_variant_ready"
+  });
 </script>
 
 </body>
