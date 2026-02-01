@@ -113,7 +113,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   // 🔴 Firebase A/B Testing で使っているキーと必ず一致させる
   rc.defaultConfig = {
-    test_color: "normal"
+    testText: "normal"
   };
 
   // 開発中は即反映
@@ -121,7 +121,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   await fetchAndActivate(rc);
 
-  const variantText = getValue(rc, "test_color").asString();
+  const variantText = getValue(rc, "testText").asString();
   console.log("varianttext",variantText);
 
   // CTA反映
