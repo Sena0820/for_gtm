@@ -88,26 +88,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <button id="cta">Loading...</button>
 
 <script type="module">
+  // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
-  import {
-    getRemoteConfig,
-    fetchAndActivate,
-    getValue
-  } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-remote-config.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
-    apiKey: "AIzaSyCmvjSxK_Xv__cwwpdjbS6oBMjqmWOp6lc",
-    authDomain: "ab-test-sample-c7e95.firebaseapp.com",
-    projectId: "ab-test-sample-c7e95",
-    storageBucket: "ab-test-sample-c7e95.firebasestorage.app",
-    messagingSenderId: "43955329537",
-    appId: "1:43955329537:web:bfe5b4915273447ee3be00",
-    measurementId: "G-MHEMLG083W"
+    apiKey: "AIzaSyBLA_WKcFzBQF8-goDOKcA3OFS1lCYVOM8",
+    authDomain: "abtest-project-3aa77.firebaseapp.com",
+    projectId: "abtest-project-3aa77",
+    storageBucket: "abtest-project-3aa77.firebasestorage.app",
+    messagingSenderId: "763049938588",
+    appId: "1:763049938588:web:30db6e68aee30e46e2a759",
+    measurementId: "G-5D67P5C535"
   };
 
+  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  getAnalytics(app);
+  const analytics = getAnalytics(app);
 
   const rc = getRemoteConfig(app);
 
