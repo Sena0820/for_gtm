@@ -20,6 +20,54 @@
       'user_id': generateUserId()
   });
 </script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
+  import {
+    getRemoteConfig,
+    fetchAndActivate,
+    getValue
+  } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-remote-config.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBLA_WKcFzBQF8-goDOKcA3OFS1lCYVOM8",
+    authDomain: "abtest-project-3aa77.firebaseapp.com",
+    projectId: "abtest-project-3aa77",
+    storageBucket: "abtest-project-3aa77.firebasestorage.app",
+    messagingSenderId: "763049938588",
+    appId: "1:763049938588:web:30db6e68aee30e46e2a759",
+    measurementId: "G-5D67P5C535"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  getAnalytics(app);
+
+  const rc = getRemoteConfig(app);
+
+  // 🔴 Firebase A/B Testing で使っているキーと必ず一致させる
+  rc.defaultConfig = {
+    testText: "normal"
+  };
+
+  // 開発中は即反映
+  rc.settings.minimumFetchIntervalMillis = 0;
+
+  await fetchAndActivate(rc);
+
+  const variantText = getValue(rc, "testText").asString();
+  console.log("varianttext",variantText);
+
+  // CTA反映
+  document.querySelector("#cta").textContent = variantText;
+
+  // GTM 用に variant を常駐させる
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    ab_variant: variantText,
+    event: "ab_variant_ready"
+  });
+</script>
   <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -87,53 +135,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <button id="cta">Loading...</button>
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
-  import {
-    getRemoteConfig,
-    fetchAndActivate,
-    getValue
-  } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-remote-config.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBLA_WKcFzBQF8-goDOKcA3OFS1lCYVOM8",
-    authDomain: "abtest-project-3aa77.firebaseapp.com",
-    projectId: "abtest-project-3aa77",
-    storageBucket: "abtest-project-3aa77.firebasestorage.app",
-    messagingSenderId: "763049938588",
-    appId: "1:763049938588:web:30db6e68aee30e46e2a759",
-    measurementId: "G-5D67P5C535"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  getAnalytics(app);
-
-  const rc = getRemoteConfig(app);
-
-  // 🔴 Firebase A/B Testing で使っているキーと必ず一致させる
-  rc.defaultConfig = {
-    testText: "normal"
-  };
-
-  // 開発中は即反映
-  rc.settings.minimumFetchIntervalMillis = 0;
-
-  await fetchAndActivate(rc);
-
-  const variantText = getValue(rc, "testText").asString();
-  console.log("varianttext",variantText);
-
-  // CTA反映
-  document.querySelector("#cta").textContent = variantText;
-
-  // GTM 用に variant を常駐させる
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    ab_variant: variantText,
-    event: "ab_variant_ready"
-  });
-</script>
 
 </body>
 </html>
