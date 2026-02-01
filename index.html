@@ -88,14 +88,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <button id="cta">Loading...</button>
 
 <script type="module">
-  // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  import {
+    getRemoteConfig,
+    fetchAndActivate,
+    getValue
+  } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-remote-config.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
     apiKey: "AIzaSyBLA_WKcFzBQF8-goDOKcA3OFS1lCYVOM8",
     authDomain: "abtest-project-3aa77.firebaseapp.com",
@@ -106,9 +106,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     measurementId: "G-5D67P5C535"
   };
 
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+  getAnalytics(app);
 
   const rc = getRemoteConfig(app);
 
