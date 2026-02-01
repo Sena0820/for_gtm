@@ -122,6 +122,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   await fetchAndActivate(rc);
 
   const variantText = getValue(rc, "test_color").asString();
+  console.log("varianttext",variantText);
 
   // CTA反映
   document.querySelector("#cta").textContent = variantText;
